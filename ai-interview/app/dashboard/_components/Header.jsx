@@ -13,7 +13,7 @@ function Header() {
   },[])
 
   return (
-    <div className='flex p-4 items-center justify-between bg-secondary shadow-md'>
+    <div className='flex pl-6 pr-6 pt-2 pb-2 items-center justify-between bg-secondary shadow-md'>
         <Image src={'/logo.svg'} width={80} height={50} alt='Logo'></Image>
         <ul className='hidden md:flex gap-6'>
           <li className={`${path === '/dashboard' ? 'text-primary font-bold' : ''}
