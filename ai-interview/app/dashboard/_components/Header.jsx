@@ -25,7 +25,13 @@ function Header() {
           <li className={`${path === '/dashboard/how' ? 'text-primary font-bold' : ''}
            hover:text-primary hover:font-bold transition-all cursor-pointer`}>About</li>
         </ul>
-        <UserButton/>
+        <UserButton 
+          appearance={{
+            elements: {
+              avatarBox: "w-10 h-10", // Change width and height
+            },
+          }}
+        />
     </div>
   )
 }
