@@ -18,6 +18,7 @@ import { MockMate } from '@/utils/schema';
 import { v4 as uuidv4 } from 'uuid';
 import { useUser } from '@clerk/nextjs';
 import moment from 'moment/moment';
+import { useRouter } from 'next/navigation';
 
 
 function AddNewInterview() {
@@ -29,6 +30,7 @@ function AddNewInterview() {
   const [loading, setLoading] = useState(false);
   const [jsonResponse, setJsonResponse] = useState([]);
   const { user } = useUser();
+  const router = useRouter();
 
   const onSubmit = async (e)=>{
     setLoading(true);
@@ -56,6 +58,10 @@ function AddNewInterview() {
         createdTime: moment().format('DD-MM-yyyy')
       }).returning({mockId:MockMate.mockId});
       console.log("Inserted ID: ",resp);
+      if(resp){
+        setOpenDialog(false);
+        router.push('/dashboard/interview/' + resp[0].mockId);
+      }
     }
     else{
       console.log("ERRor")
