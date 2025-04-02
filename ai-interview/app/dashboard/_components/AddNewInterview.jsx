@@ -13,6 +13,12 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { chatSession } from '@/utils/Gemini';
 import { LoaderCircle } from 'lucide-react';
+import { db } from '@/utils/db';
+import { MockMate } from '@/utils/schema';
+import { v4 as uuidv4 } from 'uuid';
+import { useUser } from '@clerk/nextjs';
+import moment from 'moment/moment';
+
 
 function AddNewInterview() {
 
@@ -21,15 +27,41 @@ function AddNewInterview() {
   const [jobDesc, setJobDesc] = useState();
   const [jobExp, setJobExp] = useState();
   const [loading, setLoading] = useState(false);
+  const [jsonResponse, setJsonResponse] = useState([]);
+  const { user } = useUser();
 
   const onSubmit = async (e)=>{
     setLoading(true);
     e.preventDefault();
     console.log(jobPosition, jobDesc, jobExp);
-    const promt = `Job position: ${jobPosition}, Job Description: ${jobDesc} , Years Of Experience: ${jobExp} . Depends on this information please give me ${10} real interview questions with answers that generally asked in interviews in JSON format. Give question and answer as field in JSON`;
+
+    const promt = `Job position: ${jobPosition}, Job Description: ${jobDesc} , Years Of Experience: ${jobExp} . 
+    Depends on this information please give me ${10} real interview questions with answers that generally
+     asked in interviews in JSON format. Give question and answer as field. in JSON Please 
+     generate a valid JSON response with only "question" and "answer" fields. No extra text.`;
+
     const result = await chatSession.sendMessage(promt);
     const AIResponse = (result.response.text()).replace("```json","").replace("```","");
     console.log(JSON.parse(AIResponse));
+    setJsonResponse(AIResponse);
+
+    if(AIResponse){
+      const resp = await db.insert(MockMate).values({
+        mockId: uuidv4(),
+        jsonMockResp: AIResponse,
+        jobPosition: jobPosition,
+        jobDesc: jobDesc,
+        jobExperience: jobExp,
+        createdBy: user?.primaryEmailAddress?.emailAddress,
+        createdTime: moment().format('DD-MM-yyyy')
+      }).returning({mockId:MockMate.mockId});
+      console.log("Inserted ID: ",resp);
+    }
+    else{
+      console.log("ERRor")
+    }
+    
+    
     setLoading(false);
   }
 
