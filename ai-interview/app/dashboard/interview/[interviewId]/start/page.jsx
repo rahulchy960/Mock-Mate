@@ -5,6 +5,7 @@ import { MockMate } from '@/utils/schema';
 import { eq } from 'drizzle-orm';
 import React, { useState, useEffect } from 'react'
 import Questions from './_component/Questions';
+import RecordAnswer from './_component/RecordAnswer';
 
 function StartInterview({params}) {
 
@@ -27,11 +28,12 @@ function StartInterview({params}) {
 
     return (
         <div>
-            <div className='grid grid-cols-1 md:grid-cols-2'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10'>
                 <Questions 
                 mockQuestions = {mockQuestions}
                 activeQuestion = {activeQuestion} 
                 />
+                <RecordAnswer/>
             </div>
         </div>
     )
