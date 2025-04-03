@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from 'react';
 import Webcam from 'react-webcam';
 import Image from 'next/image';

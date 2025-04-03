@@ -27,8 +27,16 @@ function Questions({ mockQuestions, activeQuestion }) {
           ))}
       </div>
 
-      <h2 className='my-5 text-md md:text-lg font-bold text-blue-700'> {mockQuestions[activeQuestion]?.question} </h2>
-      <Volume2 className='cursor-pointer' onClick={()=>{textToSpeech(mockQuestions[activeQuestion]?.question)}} />
+      {/* <h2 className='my-5 text-md md:text-lg font-bold text-blue-700'> {mockQuestions[activeQuestion]?.question} </h2>
+      <Volume2 className='cursor-pointer' onClick={()=>{textToSpeech(mockQuestions[activeQuestion]?.question)}} /> */}
+
+      <h2 className='my-5 p-2 text-md md:text-lg font-bold text-blue-700 flex items-center gap-2'>
+        {mockQuestions[activeQuestion]?.question}
+        <Volume2 
+          className='cursor-pointer text-green-500 hover:text-green-400' 
+          onClick={() => textToSpeech(mockQuestions[activeQuestion]?.question)} 
+        />
+      </h2>
 
       <div className='border rounded-lg p-5 bg-blue-100 mt-15'>
         <h2 className='flex gap-2 items-center text-blue-700'>
