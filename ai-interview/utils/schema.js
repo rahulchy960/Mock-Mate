@@ -9,4 +9,16 @@ export const MockMate = pgTable('Mock_Data', {
     createdBy: varchar('createdBy').notNull(),
     createdTime: varchar('createdTime'),
     mockId: varchar('mockId').notNull()
-}) 
+}) ;
+
+export const UserAnswer = pgTable('User_Answer', {
+    id: serial('id').primaryKey(),
+    mockId: varchar('mockId').notNull(),
+    Question: varchar('question').notNull(),
+    correctAns: text('correctAns').notNull(),
+    userAns: text('userAns').notNull(),
+    feedback: text('feedback').notNull(),
+    rating: varchar('rating').notNull(),
+    createdBy: varchar('createdBy').notNull(),
+    createdTime: varchar('createdTime')
+})

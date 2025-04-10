@@ -3,6 +3,8 @@ import React from 'react';
 
 function Questions({ mockQuestions, activeQuestion }) {
   
+  console.log(mockQuestions);
+
   const textToSpeech = (text)=>{
     if('speechSynthesis' in window){
         const speech = new SpeechSynthesisUtterance(text);
@@ -19,7 +21,7 @@ function Questions({ mockQuestions, activeQuestion }) {
         {mockQuestions && mockQuestions.map((question, index) => (
             <h2
             className={`p-2 rounded-full text-xs md:text-sm text-center cursor-pointer 
-            ${activeQuestion === index ? 'bg-green-500 text-white' : 'bg-secondary'}`}
+            ${activeQuestion === index ? 'bg-green-500 hover:bg-green-400 text-white' : 'bg-secondary transition-all' }`}
             key={index}
             >
             Question {index + 1}
