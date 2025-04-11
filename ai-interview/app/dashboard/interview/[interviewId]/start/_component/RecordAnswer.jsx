@@ -57,7 +57,7 @@ function RecordAnswer({ mockQuestions, activeQuestion, interviewData }) {
     setLoading(true);
       const feedbackPromt = `Question : ${mockQuestions[activeQuestion]?.question} , User Answer : ${userAnswer}
                             . Depends on question and user answer for given interview question, please give us 
-                            rating and feedback as area of improvement if any in just 3 to 5 lines . The output 
+                            rating (0 to 5) and feedback as area of improvement if any in just 3 to 5 lines . The output 
                             should be in JSON format with rating field and feedback field nothing else `;
 
       const result = await chatSession.sendMessage(feedbackPromt);
