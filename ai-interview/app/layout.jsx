@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Your App Title",
-  description: "Your description here",
+  title: 'MockMate | AI Interview Assistant', // <-- Your desired title
+  description: 'Practice interviews with AI-generated questions',
 };
 
 export default function RootLayout({ children }) {
