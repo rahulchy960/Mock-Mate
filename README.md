@@ -1,7 +1,3 @@
-Absolutely! Here's a detailed, clear, and simple introduction section for your **`MockMate`** `README.md`:
-
----
-
 ## 👋 Introduction to MockMate
 
 **MockMate** is an AI-powered mock interview platform that helps you practice and prepare for job interviews in a realistic and interactive way. Whether you're applying for your first job or aiming for a career switch, MockMate allows you to simulate interview scenarios tailored to your desired role.
