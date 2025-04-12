@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
+
 import {
   ClerkProvider,
   SignInButton,
@@ -27,10 +29,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Toaster/>
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+            <Toaster />
+            {children}
+        </ThemeProvider>
       </body>
     </html>
     </ClerkProvider>

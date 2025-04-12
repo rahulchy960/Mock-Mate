@@ -1,12 +1,16 @@
 "use client"
+
 import React, { useEffect } from 'react'
-import Image from 'next/image';
-import { UserButton } from '@clerk/nextjs';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import Image from 'next/image'
+import { UserButton } from '@clerk/nextjs'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
+import { useTheme } from 'next-themes'
+import { Moon, Sun } from 'lucide-react' // icons
 
 function Header() {
-  const path = usePathname();
+  const path = usePathname()
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     console.log(path)
@@ -15,6 +19,7 @@ function Header() {
   return (
     <div className='flex pl-6 pr-6 pt-2 pb-2 items-center justify-between bg-secondary shadow-md'>
       <Image src={'/logo.svg'} width={80} height={50} alt='Logo' />
+      
       <ul className='hidden md:flex gap-6'>
         <li>
           <Link
@@ -51,13 +56,25 @@ function Header() {
           </Link>
         </li>
       </ul>
-      <UserButton
-        appearance={{
-          elements: {
-            avatarBox: "w-10 h-10",
-          },
-        }}
-      />
+
+      <div className="flex items-center gap-4">
+        {/* 🌗 Dark Mode Toggle */}
+        <button
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          className='p-2 rounded-md hover:bg-muted transition'
+          aria-label='Toggle Theme'
+        >
+          {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+        </button>
+
+        <UserButton
+          appearance={{
+            elements: {
+              avatarBox: "w-10 h-10",
+            },
+          }}
+        />
+      </div>
     </div>
   )
 }
