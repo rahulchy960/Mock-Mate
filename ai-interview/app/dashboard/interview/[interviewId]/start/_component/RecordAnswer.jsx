@@ -57,7 +57,7 @@ function RecordAnswer({ mockQuestions, activeQuestion, interviewData }) {
     setLoading(true);
       const feedbackPromt = `Question : ${mockQuestions[activeQuestion]?.question} , User Answer : ${userAnswer}
                             . Depends on question and user answer for given interview question, please give us 
-                            rating (0 to 5) and feedback as area of improvement if any in just 3 to 5 lines . The output 
+                            rating (0 to 5 like 2/5) and feedback as area of improvement if any in just 3 to 5 lines . The output 
                             should be in JSON format with rating field and feedback field nothing else `;
 
       const result = await chatSession.sendMessage(feedbackPromt);
@@ -84,34 +84,38 @@ function RecordAnswer({ mockQuestions, activeQuestion, interviewData }) {
   }
 
   return (
-
-    <div className='flex flex-col justify-center items-center'>
-
-      <div className='flex flex-col justify-center items-center  rounded-lg p-5 mt-10'>
-        <Image src={webcamIcon} width={200} height={200} className='absolute' alt="WebCam" />
-        <Webcam style={{height:300, width:'100%', zIndex:10}} mirrored={true} />
+    <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center rounded-lg p-5 mt-10 bg-background border shadow-sm relative">
+        <Image
+          src={webcamIcon}
+          width={200}
+          height={200}
+          className="absolute "
+          alt="WebCam"
+        />
+        <Webcam
+          style={{ height: 300, width: '100%', zIndex: 10 }}
+          mirrored={true}
+        />
       </div>
 
       <Button
         disabled={loading}
-        onClick={startStopRecording} 
+        onClick={startStopRecording}
         variant="outline"
-        className="my-5"
+        className="my-5 border border-gray-300 hover:border-none"
       >
-      {isRecording ? (
-        <h2 className="flex items-center gap-2 text-red-600">
-          <Mic /> Stop Recording
-        </h2>
-      ) : (
-        <h2 className="flex items-center gap-2 text-green-500">
-          <Mic /> Record Answer 
-        </h2>
-      )}
+        {isRecording ? (
+          <span className="flex items-center gap-2 text-destructive hover:text-white">
+            <Mic /> Stop Recording
+          </span>
+        ) : (
+          <span className="flex items-center gap-2 text-green-500 hover:text-white">
+            <Mic /> Record Answer
+          </span>
+        )}
       </Button>
-      
     </div>
-
   );
 }
-
 export default RecordAnswer;

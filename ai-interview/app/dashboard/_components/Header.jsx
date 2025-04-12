@@ -6,7 +6,7 @@ import { UserButton } from '@clerk/nextjs'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
-import { Moon, Sun } from 'lucide-react' // icons
+import { Moon, Strikethrough, Sun } from 'lucide-react'
 
 function Header() {
   const path = usePathname()
@@ -17,14 +17,16 @@ function Header() {
   }, [])
 
   return (
-    <div className='flex pl-6 pr-6 pt-2 pb-2 items-center justify-between bg-secondary shadow-md'>
+    <div className="flex pl-6 pr-6 pt-3 pb-3 items-center justify-between bg-secondary text-black shadow-md dark:bg-zinc-950 dark:text-dark-foreground transition-colors">
       <Image src={'/logo.svg'} width={80} height={50} alt='Logo' />
-      
-      <ul className='hidden md:flex gap-6'>
+
+      <ul className="hidden md:flex gap-6">
         <li>
           <Link
             href="/dashboard"
-            className={`${path === '/dashboard' ? 'text-violet-500 font-bold' : ''} hover:text-violet-500 transition-all`}
+            className={`${
+              path === '/dashboard' ? 'text-primary font-semibold' : ''
+            } hover:text-primary transition-colors`}
           >
             Dashboard
           </Link>
@@ -33,7 +35,7 @@ function Header() {
           <Link
             href="https://neetcode.io/practice?tab=neetcode250"
             target="_blank"
-            className="hover:text-violet-500 transition-all"
+            className="hover:text-primary transition-colors"
           >
             Questions
           </Link>
@@ -41,36 +43,42 @@ function Header() {
         <li>
           <Link
             href="/dashboard/upgrade"
-            className={`${path === '/dashboard/upgrade' ? 'text-violet-500 font-bold' : ''} hover:text-violet-500 transition-all`}
+            className={`${
+              path === '/dashboard/upgrade' ? 'text-primary font-semibold' : ''
+            } hover:text-primary transition-colors hover:line-through`}
           >
-            Upgrade
+          Upgrade 
           </Link>
         </li>
         <li>
           <Link
             href="https://github.com/rahulchy960"
             target="_blank"
-            className="hover:text-violet-500 transition-all"
+            className="hover:text-primary transition-colors"
           >
             About
           </Link>
         </li>
       </ul>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-5">
         {/* 🌗 Dark Mode Toggle */}
         <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className='p-2 rounded-md hover:bg-muted transition'
-          aria-label='Toggle Theme'
+          className="p-2 rounded-md hover:text-primary transition-colors"
+          aria-label="Toggle Theme"
         >
-          {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          {theme === 'dark' ? (
+            <Sun className="w-5 h-5" />
+          ) : (
+            <Moon className="w-5 h-5" />
+          )}
         </button>
 
         <UserButton
           appearance={{
             elements: {
-              avatarBox: "w-10 h-10",
+              avatarBox: 'w-10 h-10',
             },
           }}
         />
