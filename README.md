@@ -13,7 +13,7 @@ Built with cutting-edge tools like **Next.js**, **Gemini AI**, **Tailwind CSS**,
 - 📝 **Real-Time Feedback** on answers with smart rating and suggestions
 - 🌗 **Light / Dark Mode** with theme support (`next-themes` + `shadcn/ui`)
 - 📦 **Persistent Data** using Drizzle ORM + Neon + PostgreSQL
-- 🔐 **Authentication** via Clerk (not listed above, but you mentioned earlier!)
+- 🔐 **Authentication** via Clerk
 - 🎨 Custom themes using Tailwind CSS and CSS variables
 
 ---
@@ -53,7 +53,7 @@ Built with cutting-edge tools like **Next.js**, **Gemini AI**, **Tailwind CSS**,
 ## 📦 Getting Started
 
 ```bash
-git clone https://github.com/your-username/mockmate.git
-cd mockmate
+git clone https://github.com/rahulchy960/Mock-Mate.git
+cd ai-interview
 npm install
 npm run dev
