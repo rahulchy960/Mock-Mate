@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: 'MockMate | AI Interview Assistant', // <-- Your desired title
+  title: 'MockMate | AI Interview Assistant', 
   description: 'Practice interviews with AI-generated questions',
 };
 
