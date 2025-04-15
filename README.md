@@ -40,6 +40,7 @@ Whether you're practicing soft skills, preparing for a tech role, or just trying
 | [Drizzle ORM](https://orm.drizzle.team/) | Type-safe database queries |
 | [Neon](https://neon.tech/) | Serverless Postgres |
 | [PostgreSQL](https://www.postgresql.org/) | Relational database |
+| [Clerk](https://clerk.com/) | Authentication and User Management |
 | [uuid](https://www.npmjs.com/package/uuid) | Unique ID generation |
 | [react-webcam](https://www.npmjs.com/package/react-webcam) | Webcam integration |
 | [react-hook-speech-to-text](https://www.npmjs.com/package/react-hook-speech-to-text) | Voice input |
