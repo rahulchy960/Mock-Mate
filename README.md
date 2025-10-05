@@ -1,70 +1,115 @@
-## 👋 Introduction to MockMate
+# MockMate
 
-🔗 Live: https://mock-mate-plum.vercel.app
+Live Demo: https://mock-mate-plum.vercel.app
 
-**MockMate** is an AI-powered mock interview platform that helps you practice and prepare for job interviews in a realistic and interactive way. Whether you're applying for your first job or aiming for a career switch, MockMate allows you to simulate interview scenarios tailored to your desired role.
+MockMate is an AI-powered mock interview platform that helps job seekers practice in realistic, role-specific scenarios. The web app combines AI-generated questions, speech recognition, and structured feedback to help you iterate quickly and build interview confidence.
 
-Here’s what makes MockMate awesome:
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Environment Variables](#environment-variables)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
 
-- 🧠 **AI-Generated Questions:** Just enter your job position and description — MockMate uses the Gemini API to generate intelligent, relevant interview questions instantly.
-- 🎤 **Voice-Enabled Answers:** Speak your answers out loud using your microphone. MockMate listens, transcribes, and records them for feedback.
-- 📹 **Webcam Practice:** Practice like a real interview with optional webcam mode so you can rehearse eye contact and body language.
-- 📊 **Smart Feedback System:** Get personalized feedback and a performance rating for each question — instantly powered by AI.
-- 🌗 **Dark Mode & Clean UI:** Designed with usability in mind — smooth transitions, light/dark themes, and responsive layout for all devices.
+## Overview
+MockMate guides you through end-to-end mock interviews: define the role, answer AI-generated questions by voice or text, and review targeted feedback to improve your responses. The experience mimics real interviews while remaining accessible in the browser.
 
-Whether you're practicing soft skills, preparing for a tech role, or just trying to overcome interview anxiety, **MockMate** makes the process easy, helpful, and even a little fun.
+## Features
+- AI-generated interview questions tailored by role and description
+- Voice input with transcription and optional webcam practice mode
+- Real-time scoring and actionable suggestions after each answer
+- Light and dark themes with responsive, accessible UI components
+- Persistent interview history powered by Neon Postgres and Drizzle ORM
+- Authentication backed by Clerk to keep interview data private
 
----
+## Tech Stack
+| Technology | Purpose |
+| --- | --- |
+| Next.js 15 & React 19 | Application framework and UI layer |
+| Tailwind CSS & shadcn/ui | Styling and component primitives |
+| Google Gemini API | Question generation and feedback |
+| Drizzle ORM + Neon Postgres | Database access and storage |
+| Clerk | Authentication and session management |
+| react-webcam & react-hook-speech-to-text | Voice and video capture |
+| next-themes | Theme management |
 
-## 🚀 Features
+## Project Structure
+```text
+Mock-Mate/
+  |-- ai-interview/
+    |-- app/
+    |   |-- (auth)/             # Clerk sign-in and sign-up routes
+    |   |-- dashboard/          # Interview management and practice flows
+    |   |-- globals.css
+    |   |-- layout.jsx
+    |   `-- page.jsx
+    |-- components/             # Reusable UI components (incl. shadcn/ui)
+    |   `-- ui/
+    |-- lib/                    # Shared helpers (e.g., theme providers)
+    |-- public/                 # Static assets
+    |-- utils/                  # Gemini API and database clients
+    |-- drizzle.config.js
+    |-- middleware.js
+    |-- next.config.mjs
+    |-- tailwind.config.mjs
+    `-- package.json
+```
 
-- 🎯 **AI-Generated Questions** powered by Gemini API
-- 🎤 **Voice Input & Webcam** integration using `react-webcam` and `react-hook-speech-to-text`
-- 📝 **Real-Time Feedback** on answers with smart rating and suggestions
-- 🌗 **Light / Dark Mode** with theme support (`next-themes` + `shadcn/ui`)
-- 📦 **Persistent Data** using Drizzle ORM + Neon + PostgreSQL
-- 🔐 **Authentication** via Clerk
-- 🎨 Custom themes using Tailwind CSS and CSS variables
+## Getting Started
+### Prerequisites
+- Node.js 18 or later
+- npm 9 or later
+- Access credentials for Google Gemini, Clerk, and Neon Postgres
 
----
-
-## 🛠️ Tech Stack
-
-| Tech | Role |
-|------|------|
-| [Next.js](https://nextjs.org/) | React framework for SSR/SSG |
-| [React](https://reactjs.org/) | UI Library |
-| [Tailwind CSS](https://tailwindcss.com/) | Styling |
-| [shadcn/ui](https://ui.shadcn.com/) | Beautiful, accessible components |
-| [Gemini API](https://ai.google.dev/) | AI-generated questions & feedback |
-| [Drizzle ORM](https://orm.drizzle.team/) | Type-safe database queries |
-| [Neon](https://neon.tech/) | Serverless Postgres |
-| [PostgreSQL](https://www.postgresql.org/) | Relational database |
-| [Clerk](https://clerk.com/) | Authentication and User Management |
-| [uuid](https://www.npmjs.com/package/uuid) | Unique ID generation |
-| [react-webcam](https://www.npmjs.com/package/react-webcam) | Webcam integration |
-| [react-hook-speech-to-text](https://www.npmjs.com/package/react-hook-speech-to-text) | Voice input |
-| [next-themes](https://www.npmjs.com/package/next-themes) | Theme toggling |
-
----
-
-## 📸 Screenshots
-
-<p align="center">
-  <img src="/Images/1.png" alt="DashBoard" />
-  <img src="/Images/2.png" alt="Add New Interview" />
-  <img src="/Images/3.png" alt="Information" />
-  <img src="/Images/4.png" alt="Question and Answer Recording" />
-  <img src="/Images/5.png" alt="Feedback" />
-</p>
-
-
----
-
-## 📦 Getting Started
-
+### Installation
 ```bash
 git clone https://github.com/rahulchy960/Mock-Mate.git
-cd ai-interview
+cd Mock-Mate/ai-interview
 npm install
+```
+
+### Local Development
+```bash
 npm run dev
+```
+The development server defaults to http://localhost:3000.
+
+## Available Scripts
+- `npm run dev` - Start the Next.js development server.
+- `npm run build` - Create an optimized production build.
+- `npm run start` - Serve the production build locally.
+- `npm run lint` - Lint the project with Next.js ESLint configuration.
+- `npm run db:push` - Apply Drizzle migrations to the configured database.
+- `npm run db:studio` - Launch the Drizzle Studio dashboard.
+
+## Environment Variables
+Create a `.env.local` file in `ai-interview/` and provide the required keys:
+
+| Variable | Description |
+| --- | --- |
+| `NEXT_PUBLIC_GEMINI_API_KEY` | Google Gemini API key used for question generation. |
+| `NEXT_PUBLIC_DRIZZLE_DB_URL` | Neon Postgres connection string for Drizzle ORM. |
+| `NEXT_PUBLIC_INFORMATION` | Informational banner text shown during interviews. |
+| `NEXT_PUBLIC_QUESTION_NOTE` | Helper text displayed alongside generated questions. |
+| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk publishable key for the frontend SDK. |
+| `CLERK_SECRET_KEY` | Clerk secret key for server-side authentication. |
+
+Keep secret values out of version control.
+
+## Screenshots
+![Dashboard](Images/1.png)
+![Create Interview](Images/2.png)
+![Interview Details](Images/3.png)
+![Interview Session](Images/4.png)
+![Feedback Summary](Images/5.png)
+
+## Contributing
+Pull requests are welcome! Please open an issue first to discuss major changes and ensure secrets are never committed.
+
+## License
+This project is licensed under the [Apache License 2.0](LICENSE).
